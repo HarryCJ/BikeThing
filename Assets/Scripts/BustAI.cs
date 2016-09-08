@@ -15,7 +15,7 @@ public class BustAI : MonoBehaviour {
 
 		// public ScreenCapture(GameObject g){
 
-		// 	// Debug.Log("Node bein' made yo");
+		// 	// //Debug.Log("Node bein' made yo");
 		// 	// this.camOV = bustCamera;
 		// 	OVcamera = g;
 		// }
@@ -53,7 +53,7 @@ public class BustAI : MonoBehaviour {
 	 
 	 //         RenderTexture.active = camOV.targetTexture;
 	 //         camOV.Render();
-	 //         Debug.Log(camOV.targetTexture);
+	 //         //Debug.Log(camOV.targetTexture);
 	 //         Texture2D imageOverview = new Texture2D(camOV.targetTexture.width, camOV.targetTexture.height, TextureFormat.RGB24, false);
 	 //         imageOverview.ReadPixels(new Rect(0, 0, camOV.targetTexture.width, camOV.targetTexture.height), 0, 0);
 	 //         imageOverview.Apply();
@@ -135,7 +135,7 @@ public class BustAI : MonoBehaviour {
 
 		public Node(float intensity, string action, IDictionary<string, bool> boolRequirements, Dictionary<string, int> intVariables){
 
-			// Debug.Log("Node bein' made yo");
+			// //Debug.Log("Node bein' made yo");
 			this.intensity = intensity;
 			this.action = action;
 			this.boolRequirements = boolRequirements;
@@ -146,7 +146,7 @@ public class BustAI : MonoBehaviour {
 
 		public int readStringList(List<string> stringList, int pointer){
 			id = pointer;
-			// Debug.Log("readStringList");
+			// //Debug.Log("readStringList");
 
 			string lastLine = null;
 			string currentR = null;
@@ -155,19 +155,19 @@ public class BustAI : MonoBehaviour {
 			string line;
 			for (int x  = pointer; x < stringList.Count; x++){
 				line = stringList[x];
-				// Debug.Log(line);
+				// //Debug.Log(line);
 
 				if (line == "nodeStart") {
 
 					Node newNode = new Node(1f, null, new Dictionary<string, bool>(), new Dictionary<string, int>());
-					// Debug.Log("sending: "+(x+1).ToString());
+					// //Debug.Log("sending: "+(x+1).ToString());
 					int y = newNode.readStringList(stringList, ++x);
 					x = y;
 					childNodes.Add(newNode);
 
 				} else if (line == "nodeEnd"){
 
-					// Debug.Log("returning: "+(x).ToString());
+					// //Debug.Log("returning: "+(x).ToString());
 					return x;
 				} else if (line == "intensity" ||
 					line == "action" ||
@@ -231,7 +231,7 @@ public class BustAI : MonoBehaviour {
 
 					// else if (lastLine == "childNodes"){
 
-					// 	// Debug.Log
+					// 	// //Debug.Log
 					// 	// newNode = new Node(1f, null, new Dictionary<string, bool>());
 					// 	// List<string> remainder = newNode.readStringList(stringList);
 						
@@ -250,26 +250,26 @@ public class BustAI : MonoBehaviour {
 
 		public Node getNextActionNode(IDictionary<string, bool> conditions, Dictionary<string, int> currentIntVariables, bool skipThisAction){
 
-			// Debug.Log("id");
-			// Debug.Log(id);
-			// Debug.Log("action");
-			// Debug.Log(action);
-			// Debug.Log("currentIntVariables");
+			// //Debug.Log("id");
+			// //Debug.Log(id);
+			// //Debug.Log("action");
+			// //Debug.Log(action);
+			// //Debug.Log("currentIntVariables");
 			// foreach(KeyValuePair<string, int> variable in currentIntVariables){
 			// 	// currentIntVariables[variable.Key] = variable.Value;
-			// 	Debug.Log(variable.Key);
-			// 	Debug.Log(variable.Value);
+			// 	//Debug.Log(variable.Key);
+			// 	//Debug.Log(variable.Value);
 			// }
-			// Debug.Log("intVariables");
+			// //Debug.Log("intVariables");
 			// foreach(KeyValuePair<string, int> variable in intVariables){
-			// 	Debug.Log(variable.Key);
-			// 	Debug.Log(variable.Value);
+			// 	//Debug.Log(variable.Key);
+			// 	//Debug.Log(variable.Value);
 			// }
 			// if (action == null){
-			// 	Debug.Log("is null");
+			// 	//Debug.Log("is null");
 			// }
 			// if (action == "Null"){
-			// 	Debug.Log("is null string");
+			// 	//Debug.Log("is null string");
 			// Dictionary<string, int> currentIntVariables = new Dictionary<string, int>();
 
 			// }
@@ -283,12 +283,12 @@ public class BustAI : MonoBehaviour {
 
 				} else {
 
-					// Debug.Log("checking boolRequirements");
+					// //Debug.Log("checking boolRequirements");
 					bool metRequirements = true;
 					foreach(KeyValuePair<string, bool> requirement in boolRequirements)
 					{	
-						// Debug.Log(requirement.Key);
-						// Debug.Log(requirement.Value);
+						// //Debug.Log(requirement.Key);
+						// //Debug.Log(requirement.Value);
 
 						if (conditions.ContainsKey(requirement.Key) && conditions[requirement.Key] == requirement.Value){
 						} else {
@@ -296,7 +296,7 @@ public class BustAI : MonoBehaviour {
 						}
 					}
 					if (metRequirements == true){
-						// Debug.Log("boolRequirements met");
+						// //Debug.Log("boolRequirements met");
 						//combine variables
 						foreach(KeyValuePair<string, int> variable in currentIntVariables){
 							intVariables[variable.Key] = variable.Value;
@@ -304,7 +304,7 @@ public class BustAI : MonoBehaviour {
 
 						return this;//.doAction(context);
 					} else {
-						// Debug.Log("boolRequirements failed");
+						// //Debug.Log("boolRequirements failed");
 					}
 				}
 
@@ -314,11 +314,11 @@ public class BustAI : MonoBehaviour {
 
 				foreach (Node child in childNodes){
 
-					// Debug.Log("currentIntVariables2");
+					// //Debug.Log("currentIntVariables2");
 					// foreach(KeyValuePair<string, int> variable in currentIntVariables){
 					// 	// currentIntVariables[variable.Key] = variable.Value;
-					// 	Debug.Log(variable.Key);
-					// 	Debug.Log(variable.Value);
+					// 	//Debug.Log(variable.Key);
+					// 	//Debug.Log(variable.Value);
 					// }
 					// if (ac
 					Node nextActionNode = child.getNextActionNode(conditions, currentIntVariables, false);
@@ -375,10 +375,10 @@ public class BustAI : MonoBehaviour {
 		mainCameraC = mainCamera.GetComponent<Camera>();
 
         foreach (Transform child in transform){
-        	// Debug.Log("child.name");
-        	Debug.Log(child.name);
+        	// //Debug.Log("child.name");
+        	//Debug.Log(child.name);
             if (child.name == "camera"){
-        		// Debug.Log("got it");
+        		// //Debug.Log("got it");
                  csg = child.GetComponent<CameraScreenGrab>();
             }
         }
@@ -396,8 +396,8 @@ public class BustAI : MonoBehaviour {
 			nodePopulation[x].readStringList(newNodeStringList, 0);
 		}
 
-    	// Debug.Log("nodePopulation");
-    	// Debug.Log(nodePopulation.Count);
+    	// //Debug.Log("nodePopulation");
+    	// //Debug.Log(nodePopulation.Count);
 
 		// d = alphaNode.readStringList(newNodeStringList, 0);
 		// d = omegaNode.readStringList(newNodeStringList, 0);
@@ -410,12 +410,12 @@ public class BustAI : MonoBehaviour {
 
 		breed();
 
-		// Debug.Log("printing start");
+		// //Debug.Log("printing start");
 		// List<string> fullCycleSL = alphaNode.getStringList(new List<string>());
 		// foreach (string s in fullCycleSL){
-		// 	Debug.Log(s);
+		// 	//Debug.Log(s);
 		// }
-		// Debug.Log("printing end");
+		// //Debug.Log("printing end");
 
 		// sc = new ScreenCapture(transform.gameObject);
 
@@ -448,10 +448,41 @@ public class BustAI : MonoBehaviour {
 		// }
 
 		for (int x = 0; x < loserDNA.Count; x++){
-			if (UnityEngine.Random.Range(0, favour) == 0){
-				childDNA.Add(loserDNA[x]);
+			int result = UnityEngine.Random.Range(0, 20);
+			if (result == 0){
+				result = UnityEngine.Random.Range(0, favour);
+				if (result == 0){
+					try{
+						childDNA.Add(loserDNA[x]);
+						childDNA.Add(loserDNA[x]);
+					} catch (Exception e){
+						childDNA.Add(winnerDNA[x]);
+						childDNA.Add(winnerDNA[x]);
+					}
+				} else {
+					try{
+						childDNA.Add(winnerDNA[x]);
+						childDNA.Add(winnerDNA[x]);
+					} catch (Exception e){
+						childDNA.Add(loserDNA[x]);
+						childDNA.Add(loserDNA[x]);
+					}
+				}
 			} else {
-				childDNA.Add(winnerDNA[x]);
+				result = UnityEngine.Random.Range(0, favour);
+				if (result == 0){
+					try{
+						childDNA.Add(loserDNA[x]);
+					} catch (Exception e){
+						childDNA.Add(winnerDNA[x]);
+					}
+				} else {
+					try{
+						childDNA.Add(winnerDNA[x]);
+					} catch (Exception e){
+						childDNA.Add(loserDNA[x]);
+					}
+				}
 			}
 		}
 
@@ -498,59 +529,75 @@ public class BustAI : MonoBehaviour {
 	}
 
 	public void punish(){
-		// Debug.Log("PUNISH");
+		// //Debug.Log("PUNISH");
 		// isPunished = true;
+		//Debug.Log("currentNode");
+		//Debug.Log(currentNode);
+
 		nodePopulation[currentNode].points += -1;
 	}
 
 	public void reward(){
-		// Debug.Log("REWARD");
+		// //Debug.Log("REWARD");
 		// isRewarded = true;
 		nodePopulation[currentNode].points += 1;
 	}
 
 	public void breed(){
-		// Debug.Log("breed");
-		Debug.Log("breedStart");
+		// //Debug.Log("breed");
+		//Debug.Log("breedStart");
 
     	// isRewarded = false;
     	// isPunished = false;
+		// List<string> test = new List<string>();
+		// test.Add("bobo");
+		// test.Add("fafa");
+		// test.Add("fefe");
+		//Debug.Log(test[0]);
+		// test.RemoveAt(0);
+		//Debug.Log(test[0]);
+		//Debug.Log("dunno");
+
 
     	//put in order
 		List<Node> orderedPopulation = new List<Node>();
+		List<Node> nodePopulationTemp = new List<Node>(nodePopulation);
 		for (int x = 0; x < 5; x++){
 			orderedPopulation.Add(new Node(1f, null, new Dictionary<string, bool>(), new Dictionary<string, int>()));	
 		}
 
 		int y = 4;
 		int addCount = 0;
-    	while (addCount < 5){
+    	// while (addCount < 5){
+		for (int xx = 0; xx < 5; xx++){
     		int currentBestPoints = -100;
     		int currentBestNode = 0;
-    		bool found = false;
-    		for (int x = 0; x < nodePopulation.Count; x++){
-    			if (nodePopulation[x].points >= currentBestPoints){
+    		// bool found = false;
+    		for (int x = 0; x < nodePopulationTemp.Count; x++){
+    			if (nodePopulationTemp[x].points >= currentBestPoints){
     				currentBestNode = x;
-    				currentBestPoints = nodePopulation[x].points;
-    				found = true;
-    				// Debug.Log("found");
+    				currentBestPoints = nodePopulationTemp[x].points;
+    				// found = true;
+    				// //Debug.Log("found");
     			}
     		}
-    		Debug.Log(nodePopulation.Count);
+    		// //Debug.Log(nodePopulationTemp.Count);
 
-			List<string> opSL = nodePopulation[currentBestNode].getStringList(new List<string>());
-    		orderedPopulation[y].readStringList(opSL, 0);
-    		addCount++;
-    		// Debug.Log(nodePopulation[currentBestNode].points);
-    		orderedPopulation[y].points = nodePopulation[currentBestNode].points+0;
-    		orderedPopulation[y].timer = nodePopulation[currentBestNode].timer+0;
+			List<string> opSL = nodePopulationTemp[currentBestNode].getStringList(new List<string>());
+    		orderedPopulation[xx].readStringList(opSL, 0);
+    		// //Debug.Log(nodePopulationTemp[currentBestNode].points);
+    		orderedPopulation[xx].points = currentBestPoints;
+    		//Debug.Log("nodePopulationTemp[currentBestNode].points");
+    		//Debug.Log(nodePopulationTemp[currentBestNode].points);
+    		orderedPopulation[xx].timer = nodePopulationTemp[currentBestNode].timer;
     		// orderedPopulation[y].timer = 5-y;
     		y--;
     		// if (y >= 5){
     		// 	y = 0;
     		// }
-    		// orderedPopulation.Add(nodePopulation[currentBestNode]);
-    		nodePopulation.RemoveAt(currentBestNode);
+    		// orderedPopulation.Add(nodePopulationTemp[currentBestNode]);
+    		nodePopulationTemp.RemoveAt(currentBestNode);
+    		// addCount++;
     	}
 
     	int high = 5;
@@ -561,13 +608,25 @@ public class BustAI : MonoBehaviour {
     	// orderedPopulation[3].timer = 3;
     	// orderedPopulation[4].timer = 2;
 
-    	// Debug.Log("nodePopulation");
-    	// Debug.Log(nodePopulation.Count);
+    	// //Debug.Log("nodePopulation");
+    	// //Debug.Log(nodePopulation.Count);
 
-    	// Debug.Log("orderedPopulation");
-    	// Debug.Log(orderedPopulation.Count);
-    	Debug.Log("orderedPopulation.Count");
-    	Debug.Log(orderedPopulation.Count);
+    	// //Debug.Log("orderedPopulation");
+    	// //Debug.Log(orderedPopulation.Count);
+    	//Debug.Log("orderedPopulation.Count");
+    	//Debug.Log(orderedPopulation.Count);
+
+    	timer1 = orderedPopulation[0].timer;
+    	timer2 = orderedPopulation[1].timer;
+    	timer3 = orderedPopulation[2].timer;
+    	timer4 = orderedPopulation[3].timer;
+    	timer5 = orderedPopulation[4].timer;
+
+    	points1 = orderedPopulation[0].points;
+    	points2 = orderedPopulation[1].points;
+    	points3 = orderedPopulation[2].points;
+    	points4 = orderedPopulation[3].points;
+    	points5 = orderedPopulation[4].points;
 
 
     	if (orderedPopulation[3].points < orderedPopulation[4].points){
@@ -597,37 +656,23 @@ public class BustAI : MonoBehaviour {
     		orderedPopulation[0].timer = orderedPopulation[1].timer;
     	}
 
-    	timer1 = orderedPopulation[0].timer;
-    	timer2 = orderedPopulation[1].timer;
-    	timer3 = orderedPopulation[2].timer;
-    	timer4 = orderedPopulation[3].timer;
-    	timer5 = orderedPopulation[4].timer;
-
-    	points1 = orderedPopulation[0].points;
-    	points2 = orderedPopulation[1].points;
-    	points3 = orderedPopulation[2].points;
-    	points4 = orderedPopulation[3].points;
-    	points5 = orderedPopulation[4].points;
-
     	//make new generation
 		List<Node> newPopulation = new List<Node>();
 		// newPopulation.Add(new Node(1f, null, new Dictionary<string, bool>(), new Dictionary<string, int>()));
 		// newPopulation.Add(orderedPopulation[0]);
+
+		//add empty rootnodes
 		for (int x = 0; x < 5; x++){
 			newPopulation.Add(new Node(1f, null, new Dictionary<string, bool>(), new Dictionary<string, int>()));	
 		}
 
+		//get ordered list's dna string list
 		List<string> opSL0 = orderedPopulation[0].getStringList(new List<string>());
 		List<string> opSL1 = orderedPopulation[1].getStringList(new List<string>());
 		List<string> opSL2 = orderedPopulation[2].getStringList(new List<string>());
 		List<string> opSL3 = orderedPopulation[3].getStringList(new List<string>());
 		List<string> opSL4 = orderedPopulation[4].getStringList(new List<string>());
 
-		newPopulation[0].readStringList(opSL0, 0);
-		newPopulation[1].readStringList(opSL1, 0);
-		newPopulation[3].readStringList(opSL3, 0);
-		newPopulation[2].readStringList(opSL2, 0);
-		newPopulation[4].readStringList(opSL4, 0);
 
 		// newPopulation[0].points = orderedPopulation[0].points;
 		// newPopulation[1].points = orderedPopulation[1].points;
@@ -641,27 +686,38 @@ public class BustAI : MonoBehaviour {
 		// newPopulation[3].timer = orderedPopulation[3].timer;
 		// newPopulation[4].timer = orderedPopulation[4].timer;
 
-		// newPopulation[0].readStringList(orderedPopulation[0].getStringList(new List<string>()), 0);
-		// newPopulation[1].readStringList(makeChild(
-		// 	orderedPopulation[1].getStringList(new List<string>()), 
-		// 	orderedPopulation[0].getStringList(new List<string>()),
-		// 	new List<string>(), 2), 0);
-		// newPopulation[2].readStringList(makeChild(
-		// 	orderedPopulation[2].getStringList(new List<string>()), 
-		// 	orderedPopulation[0].getStringList(new List<string>()),
-		// 	new List<string>(), 2), 0);
-		// newPopulation[3].readStringList(makeChild(
-		// 	orderedPopulation[3].getStringList(new List<string>()), 
-		// 	orderedPopulation[1].getStringList(new List<string>()),
-		// 	new List<string>(), 2), 0);
+		newPopulation[0].readStringList(opSL0, 0);
+		newPopulation[1].readStringList(
+			makeChild(opSL1, opSL0, new List<string>(), 2), 
+			0);
+		newPopulation[2].readStringList(
+			makeChild(opSL2, opSL0, new List<string>(), 2), 
+			0);
+		newPopulation[3].readStringList(
+			makeChild(opSL3, opSL1, new List<string>(), 2)
+			, 0);
+		newPopulation[4].readStringList(opSL4, 4);
+
+		//Debug.Log("newPopulation[x]");
+		for (int x = 0; x < 5; x++){
+			//Debug.Log(newPopulation[x]);
+		}
+		//Debug.Log("done");
+
 		// newPopulation[4].readStringList(makeChild(
-		// 	orderedPopulation[4].getStringList(new List<string>()), 
+		// 	opSL4, 
 		// 	orderedPopulation[2].getStringList(new List<string>()),
 		// 	new List<string>(), 2), 0);
 
+		// newPopulation[0].readStringList(opSL0, 0);
+		// newPopulation[1].readStringList(opSL1, 0);
+		// newPopulation[3].readStringList(opSL3, 0);
+		// newPopulation[2].readStringList(opSL2, 0);
+		// newPopulation[4].readStringList(opSL4, 0);
+
 		nodePopulation = newPopulation;
 
-		Debug.Log("breedComplete");
+		//Debug.Log("breedComplete");
 
 		// List<string> loserDNA;
 		// List<string> winnerDNA;
@@ -690,30 +746,55 @@ public class BustAI : MonoBehaviour {
 
 		//update senses
 		RaycastHit objectHit;        
-		if (Physics.Raycast(transform.position, transform.forward, out objectHit, 100)) {
+		// if (Physics.Raycast(transform.position, transform.forward, out objectHit, 100)) {
 
-	        if (objectHit.distance < 20f){
-	        	boolConditions["wallInfront"] = true;
+	 //        if (objectHit.distance < 20f){
+	 //        	boolConditions["wallInfront"] = true;
 
-	        } else {
-	        	boolConditions["wallInfront"] = false;
-	        }
-		} else {
-        	boolConditions["wallInfront"] = false;
-        }
-        wallInfrontSense = boolConditions["wallInfront"];
+	 //        } else {
+	 //        	boolConditions["wallInfront"] = false;
+	 //        }
+		// } else {
+  //       	boolConditions["wallInfront"] = false;
+  //       }
+  //       wallInfrontSense = boolConditions["wallInfront"];
 
 		// if (isRewarded == true){
   //   		nodePopulation[currentNode].points += 1;
 		// } 
 
 		// if (isPunished == true) {
-		// 	Debug.Log("isPunished");
+		// 	//Debug.Log("isPunished");
   //   		nodePopulation[currentNode].points = nodePopulation[currentNode].points - 1;
 		// }
 
+		if (Physics.Raycast(transform.position, transform.forward, out objectHit, 10000000)) {
+        
+        	Renderer rend = objectHit.transform.GetComponent<Renderer>();
+	        // Debug.Log(rend);
+	        // MeshCollider meshCollider = objectHit.collider as MeshCollider;
+	        MeshCollider meshCollider = objectHit.transform.GetComponent<MeshCollider>();
+	        Debug.Log(meshCollider);
+	        if (rend == null || rend.sharedMaterial == null || rend.sharedMaterial.mainTexture == null || meshCollider == null){
+	            // return;
+	        } else {
+
+		        Texture2D tex = rend.material.mainTexture as Texture2D;
+		        Vector2 pixelUV = objectHit.textureCoord;
+		        pixelUV.x *= tex.width;
+		        pixelUV.y *= tex.height;
+		        // tex.SetPixel((int)pixelUV.x, (int)pixelUV.y, Color.black);
+		        // Debug.Log(tex.GetPixel((int)pixelUV.x, (int)pixelUV.y));
+		        Debug.Log(tex.GetPixel(0, 0));
+		        // tex.Apply();
+	        }
+	        
+
+		}
+
         try{
 
+        // Debug.Log("centerRed");
         // Debug.Log(floatConditions["centerRed"]);
         	} catch {}
 		// if (csg.get) {
@@ -742,23 +823,23 @@ public class BustAI : MonoBehaviour {
         // }
 
         //get next action
-        // Debug.Log(currentNode);
+        // //Debug.Log(currentNode);
 		Node nextNode = nodePopulation[currentNode].getNextActionNode(boolConditions, new Dictionary<string, int>(), false);
 
 		//do action
 		if (nextNode != null){
-			// Debug.Log(nextNode.id);
-			// Debug.Log(nextNode.action);
-			// Debug.Log(nextNode.childNodes.Count);
+			// //Debug.Log(nextNode.id);
+			// //Debug.Log(nextNode.action);
+			// //Debug.Log(nextNode.childNodes.Count);
 			if (nextNode.action == "MoveForwardAction"){
 
-				myrigidbody.AddForce(transform.forward * 120f );
+				myrigidbody.AddForce(transform.forward * 20f );
 			} else if (nextNode.action == "turnRightAction"){
 
 				// foreach(KeyValuePair<string, int> variable in nextNode.intVariables){
 				// 	// intVariables[variable.Key] = variable.Value;
-				// 	Debug.Log(variable.Key);
-				// 	Debug.Log(variable.Value);
+				// 	//Debug.Log(variable.Key);
+				// 	//Debug.Log(variable.Value);
 				// }
 
 				if (nextNode.intVariables.ContainsKey("angle")) {
@@ -773,7 +854,7 @@ public class BustAI : MonoBehaviour {
 		}
 
 		if (nodeCounter > nodePopulation[currentNode].timer) { 
-			// Debug.Log("is -1");
+			// //Debug.Log("is -1");
 
 			// if (nodeCounter > 10){
 			if (nodePopulation[currentNode].timer > 4){

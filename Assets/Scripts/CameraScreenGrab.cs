@@ -36,37 +36,37 @@ public class CameraScreenGrab : MonoBehaviour {
 	public void getScreenShot()
 	{	
 		// Debug.Log("bla");
-		if(!mat) {
-			Shader shader = Shader.Find("Hidden/SetAlpha");
-			mat = new Material(shader);
-		}
-		// Draw a quad over the whole screen with the above shader
-		GL.PushMatrix ();
-		GL.LoadOrtho ();
-		for (var i = 0; i < mat.passCount; ++i) {
-			mat.SetPass (i);
-			GL.Begin( GL.QUADS );
-			GL.Vertex3( 0, 0, 0.1f );
-			GL.Vertex3( 1, 0, 0.1f );
-			GL.Vertex3( 1, 1, 0.1f );
-			GL.Vertex3( 0, 1, 0.1f );
-			GL.End();
-		}
-		GL.PopMatrix ();	
+		// if(!mat) {
+		// 	Shader shader = Shader.Find("Hidden/SetAlpha");
+		// 	mat = new Material(shader);
+		// }
+		// // Draw a quad over the whole screen with the above shader
+		// GL.PushMatrix ();
+		// GL.LoadOrtho ();
+		// for (var i = 0; i < mat.passCount; ++i) {
+		// 	mat.SetPass (i);
+		// 	GL.Begin( GL.QUADS );
+		// 	GL.Vertex3( 0, 0, 0.1f );
+		// 	GL.Vertex3( 1, 0, 0.1f );
+		// 	GL.Vertex3( 1, 1, 0.1f );
+		// 	GL.Vertex3( 0, 1, 0.1f );
+		// 	GL.End();
+		// }
+		// GL.PopMatrix ();	
 		
 		
-		DestroyImmediate(tex);
-        GetComponent<Camera>().Render();
+		// DestroyImmediate(tex);
+  //       GetComponent<Camera>().Render();
 
-		tex = new Texture2D(Mathf.FloorToInt(GetComponent<Camera>().pixelWidth), Mathf.FloorToInt(GetComponent<Camera>().pixelHeight));
-		tex.filterMode = filterMode;
+		// tex = new Texture2D(Mathf.FloorToInt(GetComponent<Camera>().pixelWidth), Mathf.FloorToInt(GetComponent<Camera>().pixelHeight));
+		// tex.filterMode = filterMode;
 		// tex.ReadPixels(new Rect(0, 0, GetComponent<Camera>().pixelWidth, GetComponent<Camera>().pixelHeight), 0, 0);
-		// tex.Apply(false);
-		Color TheColorPicked = tex.GetPixel(15, 15);
-		// Debug.Log(TheColorPicked.ToString());
-		parent.setCenterRed(1f);
-		width = tex.width;
-		height = tex.height;
+		// tex.Apply();
+		// Color TheColorPicked = tex.GetPixel(0, 0);
+		// // Debug.Log(TheColorPicked.ToString());
+		// parent.setCenterRed(TheColorPicked.r);
+		// width = tex.width;
+		// height = tex.height;
 	}
 
 	public int getWidth(){

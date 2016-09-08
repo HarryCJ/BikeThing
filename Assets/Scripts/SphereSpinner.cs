@@ -9,13 +9,19 @@ public class SphereSpinner : MonoBehaviour {
 	void Start () {
 	
 		myrigidbody = GetComponent<Rigidbody>();
+
+		StartCoroutine(rotatethatshit());
 	
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
-		transform.Rotate(0, 0.01f, 0);
 		
+	}
+
+	IEnumerator rotatethatshit(){
+   		yield return new WaitForSeconds(0.1f);
+		transform.Rotate(0, 0.1f, 0);
+		StartCoroutine(rotatethatshit());
 	}
 }

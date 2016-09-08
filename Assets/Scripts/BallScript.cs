@@ -15,6 +15,10 @@ public class BallScript : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
+
+		GameObject go = other.gameObject;
+		BustAI bAI = go.GetComponent<BustAI>();
+		bAI.punish();
     }
 
 	// Set up a list to keep track of targets
@@ -22,10 +26,6 @@ public class BallScript : MonoBehaviour {
 
 	// If a new enemy enters the trigger, add it to the list of targets
 	void OnTriggerEnter(Collider other){
-
-		GameObject go = other.gameObject;
-		BustAI bAI = go.GetComponent<BustAI>();
-		bAI.punish();
 		// if (other.tag.Contains("phys") || other.tag.Contains("env")){
 
 		// 	GameObject go = other.gameObject;
